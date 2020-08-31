@@ -50,7 +50,7 @@ jobs:
             -sdk iphoneos \
             -configuration "Release" \
             -archivePath $PWD/build/TravelGuide.xcarchive \
-            IPHONEOS_DEPLOYMENT_TARGET=10.0
+            IPHONEOS_DEPLOYMENT_TARGET=13.0
 
       - name: Export app
         run: |
