@@ -29,37 +29,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Sets up the certificate
-      # Make sure that repo contains the secret in IOS_PROFILE_KEY
-      # See https://zach.codes/ios-builds-using-github-actions-without-fastlane/
-      - name: Setup Certificate
-        run: ./.github/secrets/decrypt_secrets.sh
+      - name: Import signing certificate
         env:
-          IOS_PROFILE_KEY: ${{ secrets.IOS_PROFILE_KEY }}
-
-      - name: Set build number
+          SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
+          SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
         run: |
-          git fetch --tags origin
-          scripts/remote-tag-build-number origin
+          exec .github/scripts/import-certificate.sh
+
+      - name: Import provisioning profile
+        env:
+          PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
+        run: |
+          exec .github/scripts/import-profile.sh
 
       - name: Build archive
         run: |
           xcodebuild archive \
-            -workspace ISNews.xcworkspace \
-            -scheme "Ilta-Sanomat iOS Alpha" \
+            -project TravelGuide.xcodeproj \
+            -scheme "TravelGuide" \
             -sdk iphoneos \
-            -configuration "Alpha Release" \
-            -allowProvisioningUpdates \
-            -archivePath $PWD/build/ISNews-alpha.xcarchive \
+            -configuration "Release" \
+            -archivePath $PWD/build/TravelGuide.xcarchive \
             IPHONEOS_DEPLOYMENT_TARGET=10.0
 
       - name: Export app
         run: |
           xcodebuild \
             -exportArchive \
-            -archivePath $PWD/build/ISNews-alpha.xcarchive \
-            -exportOptionsPlist $PWD/ci.plist \
+            -archivePath $PWD/build/TravelGuide.xcarchive \
             -exportPath $PWD/build
+
+      - name: Upload app to App Store Connect
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          APP_STORE_CONNECT_USERNAME: ${{ secrets.APP_STORE_CONNECT_USERNAME }}
+          APP_STORE_CONNECT_PASSWORD: ${{ secrets.APP_STORE_CONNECT_PASSWORD }}
+        run: |
+          xcrun altool --upload-app -t ios -f "$PWD/build/TravelGuide.ipa" -u "$APP_STORE_CONNECT_USERNAME" -p "$APP_STORE_CONNECT_PASSWORD"
 
 #      - name: Upload to App Center
 #        uses: wzieba/AppCenter-Github-Action@v1
