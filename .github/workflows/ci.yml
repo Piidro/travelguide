@@ -57,6 +57,7 @@ jobs:
           xcodebuild \
             -exportArchive \
             -archivePath $PWD/build/TravelGuide.xcarchive \
+            -exportOptionsPlist $PWD/ci.plist \
             -exportPath $PWD/build
 
       - name: Upload app to App Store Connect
