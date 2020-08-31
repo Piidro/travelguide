@@ -71,13 +71,3 @@ jobs:
           APP_STORE_CONNECT_PASSWORD: ${{ secrets.APP_STORE_CONNECT_PASSWORD }}
         run: |
           xcrun altool --upload-app -t ios -f "$PWD/build/TravelGuide.ipa" -u "$APP_STORE_CONNECT_USERNAME" -p "$APP_STORE_CONNECT_PASSWORD"
-
-#      - name: Upload to App Center
-#        uses: wzieba/AppCenter-Github-Action@v1
-#        with:
-#          appName: IS-Alpha
-#          token: ${{ secrets.APP_CENTER_TOKEN }}
-#          group: Testers
-#          file: $PWD/build/ISNews-alpha.ipa
-#          notifyTesters: false
-#          gitReleaseNotes: true
