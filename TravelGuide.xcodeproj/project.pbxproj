@@ -309,7 +309,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "TravelGuide/Preview\\ Content";
 				DEVELOPMENT_TEAM = 6BZSZ52MWP;
 				ENABLE_PREVIEWS = YES;
@@ -331,8 +331,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "TravelGuide/Preview\\ Content";
 				DEVELOPMENT_TEAM = 6BZSZ52MWP;
 				ENABLE_PREVIEWS = YES;
@@ -345,6 +346,7 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.itu.travelguide;
 				PRODUCT_NAME = "Travel Guide";
+				PROVISIONING_PROFILE_SPECIFIER = "TravelGuide CI";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

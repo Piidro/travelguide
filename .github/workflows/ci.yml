@@ -1,0 +1,72 @@
+name: TestFlight release
+
+on: 
+  push:
+    branches: [building-ci]
+
+jobs:
+  # First checking that did we actually send the correct trigger word
+  check:
+    runs-on: macos-latest
+    outputs: 
+      triggered: steps.check.outputs.triggered
+    steps: 
+      - uses: khan/pull-request-comment-trigger@master
+        id: check
+        with:
+          trigger: 'beta'
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
+  build:
+    # If trigger word was not correct, stop right here
+    # Because otherwise every comment to PR will trigger this job
+    needs: check
+    if: needs.check.outputs.triggered == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Sets up the certificate
+      # Make sure that repo contains the secret in IOS_PROFILE_KEY
+      # See https://zach.codes/ios-builds-using-github-actions-without-fastlane/
+      - name: Setup Certificate
+        run: ./.github/secrets/decrypt_secrets.sh
+        env:
+          IOS_PROFILE_KEY: ${{ secrets.IOS_PROFILE_KEY }}
+
+      - name: Set build number
+        run: |
+          git fetch --tags origin
+          scripts/remote-tag-build-number origin
+
+      - name: Build archive
+        run: |
+          xcodebuild archive \
+            -workspace ISNews.xcworkspace \
+            -scheme "Ilta-Sanomat iOS Alpha" \
+            -sdk iphoneos \
+            -configuration "Alpha Release" \
+            -allowProvisioningUpdates \
+            -archivePath $PWD/build/ISNews-alpha.xcarchive \
+            IPHONEOS_DEPLOYMENT_TARGET=10.0
+
+      - name: Export app
+        run: |
+          xcodebuild \
+            -exportArchive \
+            -archivePath $PWD/build/ISNews-alpha.xcarchive \
+            -exportOptionsPlist $PWD/ci.plist \
+            -exportPath $PWD/build
+
+#      - name: Upload to App Center
+#        uses: wzieba/AppCenter-Github-Action@v1
+#        with:
+#          appName: IS-Alpha
+#          token: ${{ secrets.APP_CENTER_TOKEN }}
+#          group: Testers
+#          file: $PWD/build/ISNews-alpha.ipa
+#          notifyTesters: false
+#          gitReleaseNotes: true
