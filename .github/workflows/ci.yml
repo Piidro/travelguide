@@ -53,6 +53,7 @@ jobs:
             -scheme "TravelGuide" \
             -sdk iphoneos \
             -configuration "Release" \
+            -allowProvisioningUpdates \
             -archivePath $PWD/build/TravelGuide.xcarchive \
             -CODE_SIGN_IDENTITY="iPhone Distribution" \
             IPHONEOS_DEPLOYMENT_TARGET=13.0
