@@ -54,7 +54,7 @@ jobs:
             -sdk iphoneos \
             -configuration "Release" \
             -archivePath $PWD/build/TravelGuide.xcarchive \
-            -CODE_SIGN_IDENTITY="iPhone Distribution" \ 
+            -CODE_SIGN_IDENTITY="iPhone Distribution" \
             IPHONEOS_DEPLOYMENT_TARGET=13.0
 
       - name: Export app
