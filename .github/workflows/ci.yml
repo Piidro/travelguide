@@ -22,8 +22,8 @@ jobs:
   build:
     # If trigger word was not correct, stop right here
     # Because otherwise every comment to PR will trigger this job
-    needs: check
-    if: needs.check.outputs.triggered == 'true'
+    #needs: check
+    #if: needs.check.outputs.triggered == 'true'
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -50,6 +50,7 @@ jobs:
             -sdk iphoneos \
             -configuration "Release" \
             -archivePath $PWD/build/TravelGuide.xcarchive \
+            -CODE_SIGN_IDENTITY="iPhone Distribution" \ 
             IPHONEOS_DEPLOYMENT_TARGET=13.0
 
       - name: Export app
