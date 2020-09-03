@@ -31,8 +31,10 @@ jobs:
 
       - name: Import signing certificate
         env:
-          SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
-          SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
+          DEV_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.DEV_CERTIFICATE_P12_DATA }}
+          DEV_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.DEV_CERTIFICATE_PASSWORD }}
+          DIST_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
+          DIST_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
         run: |
           exec .github/scripts/import-certificate.sh
 
