@@ -2,7 +2,7 @@ name: TestFlight release
 
 on: 
   push:
-    branches: [building-ci]
+    branches: [ci-testing]
   #pull_request_review_comment:
   #  types: [created]
   #issue_comment:
