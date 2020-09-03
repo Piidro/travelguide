@@ -61,6 +61,7 @@ jobs:
         run: |
           xcodebuild \
             -exportArchive \
+            -allowProvisioningUpdates \
             -archivePath $PWD/build/TravelGuide.xcarchive \
             -exportOptionsPlist $PWD/ci.plist \
             -exportPath $PWD/build
