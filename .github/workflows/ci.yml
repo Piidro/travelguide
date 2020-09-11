@@ -1,12 +1,8 @@
 name: TestFlight release
 
 on: 
-  push:
-    branches: [ci-testing]
-  #pull_request_review_comment:
-  #  types: [created]
-  #issue_comment:
-  #  types: [created]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   # First checking that did we actually send the correct trigger word
@@ -15,10 +11,10 @@ jobs:
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
     steps: 
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: Piidro/pull-request-comment-trigger@master
         id: check
         with:
-          trigger: 'beta'
+          trigger: '/beta'
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
