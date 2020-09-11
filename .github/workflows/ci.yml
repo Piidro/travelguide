@@ -22,52 +22,54 @@ jobs:
   build:
     # If trigger word was not correct, stop right here
     # Because otherwise every comment to PR will trigger this job
-    #needs: check
-    #if: needs.check.outputs.triggered == 'true'
+    needs: check
+    if: needs.check.outputs.triggered == 'true'
     runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Greet
+        run: echo "Greetings from build!"
 
-      - name: Import signing certificate
-        env:
-          DEV_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.DEV_CERTIFICATE_P12_DATA }}
-          DEV_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.DEV_CERTIFICATE_PASSWORD }}
-          DIST_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
-          DIST_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
-        run: |
-          exec .github/scripts/import-certificate.sh
+#      - name: Checkout
+#        uses: actions/checkout@v2
+      
+#      - name: Import signing certificate
+#        env:
+#          DEV_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.DEV_CERTIFICATE_P12_DATA }}
+#          DEV_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.DEV_CERTIFICATE_PASSWORD }}
+#          DIST_SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
+#          DIST_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
+#        run: |
+#          exec .github/scripts/import-certificate.sh
 
-      - name: Import provisioning profile
-        env:
-          DEV_PROVISIONING_PROFILE_DATA: ${{ secrets.DEV_PROVISIONING_PROFILE_DATA }}
-          PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
-        run: |
-          exec .github/scripts/import-profile.sh
+#      - name: Import provisioning profile
+#        env:
+#          DEV_PROVISIONING_PROFILE_DATA: ${{ secrets.DEV_PROVISIONING_PROFILE_DATA }}
+#          PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
+#        run: |
+#          exec .github/scripts/import-profile.sh
 
-      - name: Build archive
-        run: |
-          xcodebuild archive \
-            -project TravelGuide.xcodeproj \
-            -scheme "TravelGuide" \
-            -sdk iphoneos \
-            -configuration "Release" \
-            -archivePath $PWD/build/TravelGuide.xcarchive \
-            IPHONEOS_DEPLOYMENT_TARGET=13.0 \
-            CODE_SIGNING_REQUIRED=NO
+#      - name: Build archive
+#        run: |
+#          xcodebuild archive \
+#            -project TravelGuide.xcodeproj \
+#            -scheme "TravelGuide" \
+#            -sdk iphoneos \
+#            -configuration "Release" \
+#            -archivePath $PWD/build/TravelGuide.xcarchive \
+#            IPHONEOS_DEPLOYMENT_TARGET=13.0 \
+#            CODE_SIGNING_REQUIRED=NO
 
-      - name: Export app
-        run: |
-          xcodebuild \
-            -exportArchive \
-            -archivePath $PWD/build/TravelGuide.xcarchive \
-            -exportOptionsPlist $PWD/ci.plist \
-            -exportPath $PWD/build
+#      - name: Export app
+#        run: |
+#          xcodebuild \
+#            -exportArchive \
+#            -archivePath $PWD/build/TravelGuide.xcarchive \
+#            -exportOptionsPlist $PWD/ci.plist \
+#            -exportPath $PWD/build
 
-      - name: Upload app to App Store Connect
-        #if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          APP_STORE_CONNECT_USERNAME: ${{ secrets.APP_STORE_CONNECT_USERNAME }}
-          APP_STORE_CONNECT_PASSWORD: ${{ secrets.APP_STORE_CONNECT_PASSWORD }}
-        run: |
-          xcrun altool --upload-app -t ios -f "$PWD/build/TravelGuide.ipa" -u "$APP_STORE_CONNECT_USERNAME" -p "$APP_STORE_CONNECT_PASSWORD"
+#      - name: Upload app to App Store Connect
+#        env:
+#          APP_STORE_CONNECT_USERNAME: ${{ secrets.APP_STORE_CONNECT_USERNAME }}
+#          APP_STORE_CONNECT_PASSWORD: ${{ secrets.APP_STORE_CONNECT_PASSWORD }}
+#        run: |
+#          xcrun altool --upload-app -t ios -f "$PWD/build/TravelGuide.ipa" -u "$APP_STORE_CONNECT_USERNAME" -p "$APP_STORE_CONNECT_PASSWORD"
