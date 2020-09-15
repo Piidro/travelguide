@@ -1,0 +1,18 @@
+name: 'Pull Request Review Trigger'
+description: 'Look for a "trigger word" in beginning of a pull-request review comment. Outputs was it found or not.'
+inputs:
+  reaction:
+    description: 'If set, the specified emoji "reaction" is put on the comment to indicate that the trigger was detected. For example, "rocket".'
+    required: false
+    default: ""
+  trigger:
+    description: 'The string to look for in pull-request review comment. For example "/beta"'
+    required: true
+outputs:
+  triggered:
+    description: '"true" if the trigger was found, otherwise "false"'
+  comment_body:
+    description: 'The comment body.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
