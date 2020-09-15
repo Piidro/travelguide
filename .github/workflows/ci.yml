@@ -10,7 +10,10 @@ jobs:
     runs-on: macos-latest
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
-    steps: 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: ./pr-trigger
         id: check
         with:
