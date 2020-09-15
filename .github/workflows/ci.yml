@@ -11,14 +11,10 @@ jobs:
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - uses: ./.github/workflows/pr-trigger
+      - uses: Piidro/pr-review-trigger@646e067c6697593835ab0a1899a758be8bd27f80
         id: check
         with:
           trigger: '/beta'
-          reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
