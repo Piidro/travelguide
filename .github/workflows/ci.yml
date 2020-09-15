@@ -9,12 +9,13 @@ jobs:
   check:
     runs-on: macos-latest
     outputs: 
-      triggered: ${{ steps.check.outputs.BOOL_TRIGGERED }}
+      triggered: ${{ steps.check.outputs.triggered }}
     steps: 
-      - uses: machine-learning-apps/actions-chatops@master
+      - uses: ./pr-trigger
         id: check
         with:
-          TRIGGER_PHRASE: '/beta'
+          trigger: '/beta'
+          reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
