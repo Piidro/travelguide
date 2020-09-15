@@ -11,10 +11,11 @@ jobs:
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
-      - uses: Piidro/pr-review-trigger@646e067c6697593835ab0a1899a758be8bd27f80
+      - uses: Piidro/pr-review-trigger@master
         id: check
         with:
           trigger: '/beta'
+          reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
