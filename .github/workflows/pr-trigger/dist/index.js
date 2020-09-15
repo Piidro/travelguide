@@ -1794,7 +1794,7 @@ module.exports = function(fn) {
 
 
 const core = __webpack_require__(670);
-const github = __webpack_require__(77);
+const { context, GitHub } = __webpack_require__(77);
 
 async function run() {
     const trigger = core.getInput("trigger", { required: true });
@@ -1807,10 +1807,10 @@ async function run() {
     }
 
     // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
+    const payload = JSON.stringify(context.payload, undefined, 2)
     core.debug("The event payload: ${payload}");
 
-    const body = github.context.payload.review.body
+    const body = context.payload.review.body
 //        context.eventName === "issue_comment"
 //            ? context.payload.comment.body
 //            : context.payload.pull_request.body;
@@ -1827,7 +1827,7 @@ async function run() {
         return;
     }
 */
-    const { owner, repo } = github.context.repo;
+    const { owner, repo } = context.repo;
 
     const prefixOnly = core.getInput("prefix_only") === 'true';
     if ((prefixOnly && !body.startsWith(trigger)) || !body.includes(trigger)) {
@@ -1842,18 +1842,18 @@ async function run() {
     }
 
     const client = new GitHub(GITHUB_TOKEN);
-    if (github.context.eventName === "issue_comment") {
+    if (context.eventName === "issue_comment") {
         await client.reactions.createForIssueComment({
             owner,
             repo,
-            comment_id: github.context.payload.comment.id,
+            comment_id: context.payload.comment.id,
             content: reaction
         });
     } else {
         await client.reactions.createForIssue({
             owner,
             repo,
-            issue_number: github.context.payload.pull_request.number,
+            issue_number: context.payload.pull_request.number,
             content: reaction
         });
     }
