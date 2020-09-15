@@ -11,6 +11,9 @@ jobs:
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: ./pr-review-trigger
         id: check
         with:
