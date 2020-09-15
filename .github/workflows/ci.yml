@@ -15,7 +15,6 @@ jobs:
         id: check
         with:
           trigger: '/beta'
-          reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
