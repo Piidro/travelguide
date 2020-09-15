@@ -11,7 +11,7 @@ jobs:
     outputs: 
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
-      - uses: Piidro/pr-review-trigger@master
+      - uses: ./pr-review-trigger
         id: check
         with:
           trigger: '/beta'
