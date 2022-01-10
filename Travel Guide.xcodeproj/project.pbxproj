@@ -7,18 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C140B5DD276E40050026413F /* Travel_GuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5DC276E40050026413F /* Travel_GuideApp.swift */; };
-		C140B5DF276E40050026413F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5DE276E40050026413F /* ContentView.swift */; };
+		C140B5DD276E40050026413F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5DC276E40050026413F /* App.swift */; };
+		C140B5DF276E40050026413F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5DE276E40050026413F /* MainView.swift */; };
 		C140B5E1276E40060026413F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C140B5E0276E40060026413F /* Assets.xcassets */; };
 		C140B5E4276E40060026413F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C140B5E3276E40060026413F /* Preview Assets.xcassets */; };
+		C140B5EB276E40710026413F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5EA276E40710026413F /* ListView.swift */; };
+		C140B5ED276E407F0026413F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5EC276E407F0026413F /* DetailView.swift */; };
+		C140B5EF276E40980026413F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5EE276E40980026413F /* Model.swift */; };
+		C140B5F3276E5BA40026413F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5F2276E5BA40026413F /* WebView.swift */; };
+		C140B5F527819DDD0026413F /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5F427819DDD0026413F /* DataModels.swift */; };
+		C140B5F92781A4540026413F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5F82781A4540026413F /* LocationManager.swift */; };
+		C140B5FB2781ABA10026413F /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140B5FA2781ABA10026413F /* ListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C140B5D9276E40050026413F /* Travel Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C140B5DC276E40050026413F /* Travel_GuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_GuideApp.swift; sourceTree = "<group>"; };
-		C140B5DE276E40050026413F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C140B5DC276E40050026413F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		C140B5DE276E40050026413F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C140B5E0276E40060026413F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C140B5E3276E40060026413F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C140B5EA276E40710026413F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		C140B5EC276E407F0026413F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C140B5EE276E40980026413F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C140B5F2276E5BA40026413F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C140B5F427819DDD0026413F /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
+		C140B5F82781A4540026413F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C140B5FA2781ABA10026413F /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		C140B5FC27822CEC0026413F /* Travel-Guide-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Travel-Guide-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +66,16 @@
 		C140B5DB276E40050026413F /* Travel Guide */ = {
 			isa = PBXGroup;
 			children = (
-				C140B5DC276E40050026413F /* Travel_GuideApp.swift */,
-				C140B5DE276E40050026413F /* ContentView.swift */,
+				C140B5FC27822CEC0026413F /* Travel-Guide-Info.plist */,
+				C140B5DC276E40050026413F /* App.swift */,
+				C140B5F427819DDD0026413F /* DataModels.swift */,
+				C140B5EC276E407F0026413F /* DetailView.swift */,
+				C140B5EA276E40710026413F /* ListView.swift */,
+				C140B5FA2781ABA10026413F /* ListItemView.swift */,
+				C140B5F82781A4540026413F /* LocationManager.swift */,
+				C140B5DE276E40050026413F /* MainView.swift */,
+				C140B5EE276E40980026413F /* Model.swift */,
+				C140B5F2276E5BA40026413F /* WebView.swift */,
 				C140B5E0276E40060026413F /* Assets.xcassets */,
 				C140B5E2276E40060026413F /* Preview Content */,
 			);
@@ -137,8 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C140B5DF276E40050026413F /* ContentView.swift in Sources */,
-				C140B5DD276E40050026413F /* Travel_GuideApp.swift in Sources */,
+				C140B5FB2781ABA10026413F /* ListItemView.swift in Sources */,
+				C140B5EF276E40980026413F /* Model.swift in Sources */,
+				C140B5DF276E40050026413F /* MainView.swift in Sources */,
+				C140B5ED276E407F0026413F /* DetailView.swift in Sources */,
+				C140B5DD276E40050026413F /* App.swift in Sources */,
+				C140B5F527819DDD0026413F /* DataModels.swift in Sources */,
+				C140B5EB276E40710026413F /* ListView.swift in Sources */,
+				C140B5F3276E5BA40026413F /* WebView.swift in Sources */,
+				C140B5F92781A4540026413F /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +302,8 @@
 				DEVELOPMENT_TEAM = 6BZSZ52MWP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Travel-Guide-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Tadaa;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -301,6 +333,8 @@
 				DEVELOPMENT_TEAM = 6BZSZ52MWP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Travel-Guide-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Tadaa;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
