@@ -52,7 +52,9 @@ struct ListView: View {
             try await model.locateAndFetchItems(force: force)
         } catch {
             catchedError = error
-            showAlert = true
+            if let urlError = error as? URLError, urlError.code != .cancelled {
+                showAlert = true
+            }
         }
         loading = false
     }

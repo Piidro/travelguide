@@ -23,6 +23,7 @@ struct MainView: View {
                 }
                 .navigationTitle("Nearby")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
