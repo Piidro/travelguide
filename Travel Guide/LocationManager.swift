@@ -10,12 +10,13 @@ final class LocationManager: NSObject, ObservableObject {
 
     private let manager = CLLocationManager()
 
-    override init() {
+    @MainActor override init() {
         super.init()
 
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-//        authorizationStatus = manager.authorizationStatus
+        
+        authorizationStatus = manager.authorizationStatus
     }
 
     func requestLocation() async throws -> CLLocation {

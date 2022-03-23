@@ -5,15 +5,19 @@ import MapKit
 /// Easily throw generic errors with a text description.
 extension String: Error { }
 
-@MainActor
 class Model: ObservableObject {
 
     @AppStorage("language") var lang = "en"
 
     @Published var items: [GeoSearchItem] = []
 
-    private let locationManager = LocationManager()
+    private let locationManager: LocationManager
     private var lastLocation: CLLocation?
+
+    @MainActor
+    init() {
+        locationManager = LocationManager()
+    }
 
     private func locationsUrl(location: CLLocation, picontinue: Int? = nil) -> URL? {
         var components = URLComponents(string: String(format: "https://%@.m.wikipedia.org/w/api.php", lang))
@@ -51,6 +55,7 @@ class Model: ObservableObject {
         try await fetchItems(location: location)
     }
 
+    @MainActor
     func fetchItems(location: CLLocation, picontinue: Int? = nil) async throws {
         guard let url = locationsUrl(location: location, picontinue: picontinue) else {
             fatalError()

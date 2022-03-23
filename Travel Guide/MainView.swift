@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
 
-    @ObservedObject var model = Model()
+    @ObservedObject var model: Model
 
     var body: some View {
         NavigationView {
@@ -28,6 +28,6 @@ struct MainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(model: Model())
     }
 }
