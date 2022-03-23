@@ -36,7 +36,6 @@ struct GeoSearchItem: Codable, Hashable {
     var pagelanguage: String?
     var pagelanguagehtmlcode: String?
     var pagelanguagedir: String?
-    //var touched: Date?
     var lastrevid: Int?
     var length: Int?
     var fullurl: URL?
